@@ -12,7 +12,7 @@ gulp.task('js', function () {
         .pipe(babel({ presets: ['es2015'] }))
         .pipe(ngAnnotate())
         .pipe(concat('app.js'))
-        .pipe(gulp.dest('./'))
+        .pipe(gulp.dest('./assets'))
 })
 
 gulp.task('watch', ['js'], function () {

@@ -1,14 +1,15 @@
 angular.module('SuchBeer')
     .config(function ($routeProvider) {
+        var basePath = 'views/';
         $routeProvider
             .when('/', {
-                templateUrl: './../views/vote.html'
+                templateUrl: basePath + 'vote.html'
             })
             .when('/login', {
-                templateUrl: './../views/login.html'
+                templateUrl: basePath + 'login.html'
             })
             .otherwise({
-                redirectTo: './../views/error404'
+                redirectTo: basePath + 'error404'
             });
     }).run(function ($location, $rootScope, UserSvc) {
 
