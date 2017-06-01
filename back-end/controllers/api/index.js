@@ -16,5 +16,6 @@ router.use(bodyParser.json())
 //});
 
 router.use(require('./terms'))
+router.use(require('./users'))
 
 module.exports = router

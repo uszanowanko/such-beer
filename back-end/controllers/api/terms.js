@@ -1,7 +1,5 @@
 var router = require('express').Router()
 var Term = require('../../models/term')
-//var User = require('../../models/user')
-//var websockets = require('../../websockets')
 
 
 router.post('/terms', function (req, res, next) {

@@ -1,7 +1,7 @@
 var db = require('../db')
-//require('./line')
+require('./vote')
 
-var song = db.model('term', {
+var term = db.model('term', {
     date: {
         type: Date,
         required: true
@@ -10,7 +10,11 @@ var song = db.model('term', {
         type: Date,
         required: true,
         default: Date.now
-    }
+    },
+    votes: [{
+        type: db.Schema.Types.ObjectId,
+        ref: 'vote'
+    }],
 })
 
-module.exports = song
+module.exports = term
