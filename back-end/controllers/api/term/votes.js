@@ -4,7 +4,7 @@ var Vote = require('../../../models/vote')
 
 
 router.post('/votes', function (req, res, next) {
-    if (!req.cookies || !req.cookies.username) {
+    if (!req.cookies || !req.cookies.user) {
         return res.status(401).end();
     }
     Term.findById(req.params.termId)
