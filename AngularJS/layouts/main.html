@@ -11,13 +11,13 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 
-<body ng-app="SuchBeer" ng-controller="ApplicationCtrl as app" ng-cloak>
+<body ng-app="SuchBeer" ng-controller="ApplicationCtrl as app" layout="column" ng-cloak>
     <md-toolbar class="md-toolbar-tools" layout="row" layout-align="space-between center">
         <h2>Such Beer</h2>
         <md-menu>
             <md-button ng-click="$mdMenu.open()" ng-show="!!app.user">
                 <md-icon alt="user">person</md-icon>
-                <span hide show-gt-sm>{{app.user.username}}</span>
+                <span hide show-gt-sm>{{app.user.name}}</span>
             </md-button>
             <md-menu-content width="4">
                 <md-menu-item>

@@ -13,23 +13,35 @@ router.post('/votes', function (req, res, next) {
         if (err) {
             return next(err)
         }
-        var vote = new Vote({
-            score: req.body.score,
-            user: req.cookies.username
-        })
-        vote.save(function (err, vote) {
-            if (err) {
-                return next(err)
-            }
-            term.votes.push(vote);
-            term.save(function (err, term) {
+        var vote = term.votes.find((vote) => vote.user.toString() === req.cookies.user);
+        if (vote) {
+            vote.score = req.body.score;
+            vote.save(function (err, vote) {
                 if (err) {
-                    vote.remove();
                     return next(err)
                 }
-                res.status(201).json(vote)
-            });
-        })
+                res.status(200).json(vote)
+            })
+        }
+        else {
+            var vote = new Vote({
+                score: req.body.score,
+                user: req.cookies.user
+            })
+            vote.save(function (err, vote) {
+                if (err) {
+                    return next(err)
+                }
+                term.votes.push(vote);
+                term.save(function (err, term) {
+                    if (err) {
+                        vote.remove();
+                        return next(err)
+                    }
+                    res.status(201).json(vote)
+                });
+            })
+        }
     })
 })
 

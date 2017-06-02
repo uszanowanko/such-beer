@@ -1,0 +1,63 @@
+<!--
+<div flex layout="row" layout-align="center center" ng-controller="TermCtrl as ctrl">
+    <md-card flex-gt-md="33">
+        <md-card-title>
+            <md-card-title-text>
+                <span class="md-headline">Upcoming events</span>
+            </md-card-title-text>
+        </md-card-title>
+        <md-card-content>
+            <md-card ng-repeat="term in ctrl.terms">
+                <md-card-title>
+                    <md-card-title-text>
+                        <div layout="row" layout-align="center center" class="md-hue-3">
+                            <span flex class="md-headline">{{term.date | date : "d/M/yy H:mm"}}</span>        
+                            <div layout="column" layout-align="center center">
+                                <span class="md-subhead">Probability:</span>
+                                <span class="md-display-2">10%</span>                    
+                            </div>            
+                        </div>
+                        <md-divider></md-divider>
+                        <span class="md-subhead">Your availability:</span>
+                        <md-slider flex min="0" max="100" ng-model="score" ng-change="ctrl.vote(term,score)"></md-slider>
+                    </md-card-title-text>
+                </md-card-title>
+            </md-card>
+        </md-card-content>
+    </md-card>
+</div>
+-->
+
+
+<div flex ng-controller="TermCtrl as ctrl">
+    <md-grid-list
+        md-cols="1" md-cols-sm="2" md-cols-md="3" md-cols-gt-md="6"
+        md-row-height-gt-md="1:1" md-row-height="4:3"
+        md-gutter="8px" md-gutter-gt-sm="4px" >
+
+    <md-grid-tile ng-repeat="term in ctrl.terms"
+                  md-rowspan="1"
+                  md-colspan={{term._id%2+1}}
+                  md-colspan-sm="1"
+                  md-colspan-xs="1">
+
+        <md-card flex style="height:95%" layout-padding>
+                        <div layout="row" layout-align="center center">
+                            <span flex class="md-headline">Beer</span>        
+                            <div layout="column" layout-align="center center">
+                                <span class="md-subhead">Probability:</span>
+                                <span class="md-display-2">10%</span>                    
+                            </div>            
+                        </div>
+                        <div layout="column" layout-align="center center">
+                            <span flex class="md-display-1">{{term.date | date : "d/M/yy H:mm"}}</span>                   
+                        </div>
+                        <md-divider></md-divider>
+                        <div flex layout="column" layout-align="end">
+                            <span class="md-subhead">Your availability:</span>
+                            <md-slider min="0" max="100" ng-model="score" ng-change="ctrl.vote(term,score)"></md-slider>
+                        </div>
+            </md-card>
+    </md-grid-tile>
+  </md-grid-list>
+</div>

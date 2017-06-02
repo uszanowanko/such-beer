@@ -1,8 +1,16 @@
-function ApplicationCtrl(UserSvc) {
+function ApplicationCtrl($location, UserSvc) {
     this.userSvc = UserSvc
     
+    UserSvc.getUser().then((response) => {
+        if (response) {
+            $location.path('/login')
+        }
+    });
+    
     this.logout = () => {
-        UserSvc.currentUser = null;
+        UserSvc.logout(UserSvc.currentUser.name).then(() => {
+            $location.path('/login');
+        });
     }
 }
 
