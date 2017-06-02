@@ -43,7 +43,31 @@
 
         <md-card flex style="height:95%" layout-padding>
                         <div layout="row" layout-align="center center">
-                            <span flex class="md-headline">Beer</span>        
+                            <span flex class="md-headline">{{term.name}}</span>        
+                            <div layout="column" layout-align="center center">
+                                <span class="md-subhead">Probability:</span>
+                                <span class="md-display-2">10%</span>                    
+                            </div>            
+                        </div>
+                        <div layout="column" layout-align="center center">
+                            <span flex class="md-display-1">{{term.date | date : "d/M/yy H:mm"}}</span>                   
+                        </div>
+                        <md-divider></md-divider>
+                        <div flex layout="column" layout-align="end">
+                            <span class="md-subhead">Your availability:</span>
+                            <md-slider min="0" max="100" ng-model="score" ng-change="ctrl.vote(term,score)"></md-slider>
+                        </div>
+            </md-card>
+    </md-grid-tile>
+    <md-grid-tile
+                  md-rowspan="1"
+                  md-colspan=1
+                  md-colspan-sm="1"
+                  md-colspan-xs="1">
+
+        <md-card flex style="height:95%" layout-padding>
+                        <div layout="row" layout-align="center center">
+                            <span flex class="md-headline">{{term.name}}</span>        
                             <div layout="column" layout-align="center center">
                                 <span class="md-subhead">Probability:</span>
                                 <span class="md-display-2">10%</span>                    

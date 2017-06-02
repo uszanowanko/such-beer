@@ -6,6 +6,10 @@ var term = db.model('term', {
         type: Date,
         required: true
     },
+    name: {
+        type: String,
+        required: true
+    },
     added: {
         type: Date,
         required: true,

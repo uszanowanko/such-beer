@@ -4,7 +4,8 @@ var Term = require('../../models/term')
 
 router.post('/terms', function (req, res, next) {
     var term = new Term({
-        date: req.body.date
+        date: req.body.date,
+        name: req.body.name
     })
     term.save(function (err, term) {
         if (err) {
