@@ -35,7 +35,7 @@
         md-row-height-gt-md="1:1" md-row-height="4:3"
         md-gutter="8px" md-gutter-gt-sm="4px" >
 
-    <md-grid-tile ng-repeat="term in ctrl.terms"
+    <md-grid-tile ng-repeat="(index,term) in ctrl.terms"
                   md-rowspan="1"
                   md-colspan={{term._id%2+1}}
                   md-colspan-sm="1"
@@ -46,16 +46,16 @@
                             <span flex class="md-headline">{{term.name}}</span>        
                             <div layout="column" layout-align="center center">
                                 <span class="md-subhead">Probability:</span>
-                                <span class="md-display-2">10%</span>                    
+                                <span class="md-display-1">{{term.score}}%</span>                    
                             </div>            
                         </div>
                         <div layout="column" layout-align="center center">
-                            <span flex class="md-display-1">{{term.date | date : "d/M/yy H:mm"}}</span>                   
+                            <span flex class="md-headline">{{term.date | date : "d/M/yy H:mm"}}</span>                   
                         </div>
                         <md-divider></md-divider>
                         <div flex layout="column" layout-align="end">
                             <span class="md-subhead">Your availability:</span>
-                            <md-slider min="0" max="100" ng-model="score" ng-change="ctrl.vote(term,score)"></md-slider>
+                            <md-slider min="0" max="100" ng-model="score" ng-change="ctrl.vote(term,index,score)"></md-slider>
                         </div>
             </md-card>
     </md-grid-tile>
@@ -70,7 +70,7 @@
                             <span flex class="md-headline">{{term.name}}</span>        
                             <div layout="column" layout-align="center center">
                                 <span class="md-subhead">Probability:</span>
-                                <span class="md-display-2">10%</span>                    
+                                <span class="md-display-1">10%</span>                    
                             </div>            
                         </div>
                         <div layout="column" layout-align="center center">

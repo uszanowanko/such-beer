@@ -1,5 +1,6 @@
 var router = require('express').Router()
 var Term = require('../../models/term')
+var User = require('../../models/user')
 
 
 router.post('/terms', function (req, res, next) {
@@ -16,11 +17,24 @@ router.post('/terms', function (req, res, next) {
 })
 
 router.get('/terms', function (req, res, next) {
-    Term.find(function (err, term) {
+    Term.find()
+    .populate('votes')
+    .exec(function (err, terms) {
         if (err) {
             return next(err)
         }
-        res.json(term);
+        User.find(function(err, users) {
+            if (err) {
+                return next(err)
+            }
+            var userCount = users.length;
+            terms.forEach((term,index,arr) => {
+                var sum=term.votes.reduce((a,b) => a+b.score,0);
+                arr[index].score = parseInt(sum/userCount);
+                arr[index].votes = [];
+            })
+            res.json(terms);
+        })
     });
 })
 

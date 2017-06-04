@@ -1,6 +1,7 @@
 var router = require('express').Router({mergeParams: true})
 var Term = require('../../../models/term')
 var Vote = require('../../../models/vote')
+var User = require('../../../models/user')
 
 
 router.post('/votes', function (req, res, next) {
@@ -20,7 +21,14 @@ router.post('/votes', function (req, res, next) {
                 if (err) {
                     return next(err)
                 }
-                res.status(200).json(vote)
+                User.find(function(err, users) {
+                    if (err) {
+                        return next(err)
+                    }
+                    var userCount = users.length;
+                    term.score = parseInt(term.votes.reduce((a,b) => a+b.score,0)/userCount);
+                    res.status(200).json(term)
+                })
             })
         }
         else {
@@ -38,7 +46,14 @@ router.post('/votes', function (req, res, next) {
                         vote.remove();
                         return next(err)
                     }
-                    res.status(201).json(vote)
+                    User.find(function(err, users) {
+                        if (err) {
+                            return next(err)
+                        }
+                        var userCount = users.length;
+                        term.score = parseInt(term.votes.reduce((a,b) => a+b.score,0)/userCount);
+                        res.status(201).json(term)
+                    })
                 });
             })
         }

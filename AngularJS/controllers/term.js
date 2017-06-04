@@ -1,15 +1,19 @@
-function TermCtrl(TermSvc) {
+function TermCtrl($scope, TermSvc) {
     var _defer = [];
     
     TermSvc.getTerms().then((terms) => {
         this.terms = terms
     });
     
-    this.vote = (term, score) => {
+    this.vote = (term, index, score) => {
         if (_defer[term._id]) {
             clearTimeout(_defer[term._id]);
         }
-        _defer[term._id] = setTimeout(() => TermSvc.vote(term, score), 500);
+        _defer[term._id] = setTimeout(() => {
+            TermSvc.vote(term, score).then((response)=>{
+                this.terms[index] = response;
+            })
+        }, 500);
     }
     
 }

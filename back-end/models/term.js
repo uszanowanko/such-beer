@@ -15,6 +15,9 @@ var term = db.model('term', {
         required: true,
         default: Date.now
     },
+    score: {
+        type: Number
+    },
     votes: [{
         type: db.Schema.Types.ObjectId,
         ref: 'vote'
