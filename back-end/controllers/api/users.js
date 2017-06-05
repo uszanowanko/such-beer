@@ -10,7 +10,7 @@ router.post('/users', function (req, res, next) {
         if (err) {
             return next(err)
         }
-        res.cookie('user',user._id.toString(), { maxAge: 900000, httpOnly: true, secure: false});
+        res.cookie('user',user._id.toString(), { maxAge: 2147483647 , httpOnly: true, secure: false}); //"never" expiring cookie
         res.status(201).json(user)
     })
 })

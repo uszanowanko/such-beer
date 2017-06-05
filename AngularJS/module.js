@@ -1,4 +1,4 @@
-angular.module('SuchBeer', ['ngMaterial', 'ngRoute'])
+angular.module('SuchBeer', ['ngMaterial', 'ngRoute', 'ngMaterialDatePicker'])
     .config(function ($mdThemingProvider) {
         $mdThemingProvider.theme('default')
             .primaryPalette('blue-grey')

@@ -17,7 +17,7 @@ router.post('/votes', function (req, res, next) {
         var vote = term.votes.find((vote) => vote.user.toString() === req.cookies.user);
         if (vote) {
             vote.score = req.body.score;
-            vote.save(function (err, vote) {
+            vote.save(function (err) {
                 if (err) {
                     return next(err)
                 }
@@ -26,7 +26,9 @@ router.post('/votes', function (req, res, next) {
                         return next(err)
                     }
                     var userCount = users.length;
-                    term.score = parseInt(term.votes.reduce((a,b) => a+b.score,0)/userCount);
+                    term.myScore = vote.score;
+                    term.score = term.votes? parseInt(term.votes.reduce((a,b) => a+b.score,0)/userCount) : 0;
+                    term.votes = undefined;
                     res.status(200).json(term)
                 })
             })
@@ -36,7 +38,7 @@ router.post('/votes', function (req, res, next) {
                 score: req.body.score,
                 user: req.cookies.user
             })
-            vote.save(function (err, vote) {
+            vote.save(function (err) {
                 if (err) {
                     return next(err)
                 }
@@ -52,35 +54,13 @@ router.post('/votes', function (req, res, next) {
                         }
                         var userCount = users.length;
                         term.score = parseInt(term.votes.reduce((a,b) => a+b.score,0)/userCount);
+                        term.myScore = vote.score;
+                        term.votes = undefined;
                         res.status(201).json(term)
                     })
                 });
             })
         }
-    })
-})
-
-router.get('/votes', function (req, res, next) {
-    Term.findById(req.params.termId)
-        .populate('votes')
-        .exec(function (err, term) {
-        if (err) {
-            return next(err)
-        }
-        if (!term) {
-            return res.status(404).end();
-        }
-        Term.populate(term, {
-            path: 'votes.user',
-            select: 'name',
-            model: 'user'
-        },
-        function(err, user) {
-            if (err) {
-                return next(err);
-            }
-            res.json(term.votes)
-        });
     })
 })
 

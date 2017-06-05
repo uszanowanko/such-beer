@@ -6,6 +6,13 @@ function TermSvc($http) {
         },() => false);
     }
     
+    this.addTerm = (term) => {
+        return $http.post('/api/terms', term)
+        .then((response) => {
+            return response.data;
+        },() => false);
+    }
+    
     this.vote = (term, score) => {
         return $http.post('/api/term/'+term._id+'/votes', {score: score})
         .then((response) => {

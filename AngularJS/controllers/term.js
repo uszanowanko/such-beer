@@ -11,9 +11,17 @@ function TermCtrl($scope, TermSvc) {
         }
         _defer[term._id] = setTimeout(() => {
             TermSvc.vote(term, score).then((response)=>{
-                this.terms[index] = response;
+                this.terms[index].score = response.score;
             })
         }, 500);
+    }
+    
+    this.addTerm = (term) => {
+        TermSvc.addTerm(term).then((response) => {
+            this.terms.push(response)
+            term.name = null;
+            term.date = null;
+        })
     }
     
 }

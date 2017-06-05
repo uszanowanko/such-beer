@@ -16,7 +16,12 @@ var term = db.model('term', {
         default: Date.now
     },
     score: {
-        type: Number
+        type: Number,
+        default: 0
+    },
+    myScore: {
+        type: Number,
+        default: 0
     },
     votes: [{
         type: db.Schema.Types.ObjectId,

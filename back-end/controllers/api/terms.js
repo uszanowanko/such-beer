@@ -17,6 +17,9 @@ router.post('/terms', function (req, res, next) {
 })
 
 router.get('/terms', function (req, res, next) {
+    if (!req.cookies || !req.cookies.user) {
+        return res.status(401).end();
+    }
     Term.find()
     .populate('votes')
     .exec(function (err, terms) {
@@ -29,9 +32,11 @@ router.get('/terms', function (req, res, next) {
             }
             var userCount = users.length;
             terms.forEach((term,index,arr) => {
-                var sum=term.votes.reduce((a,b) => a+b.score,0);
+                var sum = term.votes.reduce((a,b) => a+b.score,0);
+                var userVote = term.votes? term.votes.find((vote) => vote.user.toString() === req.cookies.user) : null;
+                arr[index].myScore = userVote? userVote.score : 0;
                 arr[index].score = parseInt(sum/userCount);
-                arr[index].votes = [];
+                arr[index].votes = undefined;
             })
             res.json(terms);
         })

@@ -11,7 +11,7 @@ angular.module('SuchBeer')
             .otherwise({
                 redirectTo: basePath + 'error404'
             });
-    }).run(function ($location, $rootScope, UserSvc) {
+    })/*.run(function ($location, $rootScope, UserSvc) {
 
         $rootScope.$on("$locationChangeStart", function (event, next, current) {
             if (!UserSvc.currentUser) {
@@ -19,4 +19,4 @@ angular.module('SuchBeer')
             }
         });
 
-    });
+    });*/

@@ -2,7 +2,7 @@ function ApplicationCtrl($location, UserSvc) {
     this.userSvc = UserSvc
     
     UserSvc.getUser().then((response) => {
-        if (response) {
+        if (!response) {
             $location.path('/login')
         }
     });
