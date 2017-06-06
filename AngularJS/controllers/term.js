@@ -13,7 +13,7 @@ function TermCtrl($scope, TermSvc) {
             TermSvc.vote(term, score).then((response)=>{
                 this.terms[index].score = response.score;
             })
-        }, 500);
+        }, 100);
     }
     
     this.addTerm = (term) => {

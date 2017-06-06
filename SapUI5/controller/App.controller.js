@@ -4,10 +4,9 @@ sap.ui.define([
 	"use strict";
 
 	return Controller.extend("sap.ui.demo.wt.controller.App", {
-
-		onOpenDialog : function () {
-			this.getOwnerComponent().openHelloDialog();
-		}
+        onInit: function() {
+            sap.ui.getCore().setModel(new sap.ui.model.json.JSONModel());
+        }
 	});
 
 });

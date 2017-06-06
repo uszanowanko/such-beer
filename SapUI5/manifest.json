@@ -9,15 +9,6 @@
 	"description": "{{appDescription}}",
 	"applicationVersion": {
 	  "version": "1.0.0"
-	},
-	"dataSources": {
-	  "invoiceRemote": {
-		"uri": "/destinations/northwind/V2/Northwind/Northwind.svc/",
-		"type": "OData",
-		"settings": {
-		  "odataVersion": "2.0"
-		}
-	  }
 	}
   },
   "sap.ui": {
@@ -48,9 +39,6 @@
 		"settings": {
 		  "bundleName": "sap.ui.demo.wt.i18n.i18n"
 		}
-	  },
-	  "invoice": {
-		"dataSource": "invoiceRemote"
 	  }
 	},
 	"resources": {
@@ -71,21 +59,21 @@
 	  "routes": [
 		{
 		  "pattern": "",
-		  "name": "overview",
-		  "target": "overview"
+		  "name": "vote",
+		  "target": "vote"
 		},
 		{
-		  "pattern": "detail/{invoicePath}",
-		  "name": "detail",
-		  "target": "detail"
+		  "pattern": "login",
+		  "name": "login",
+		  "target": "login"
 		}
 	  ],
 	  "targets": {
-		"overview": {
-		  "viewName": "Overview"
+		"vote": {
+		  "viewName": "vote"
 		},
-		"detail": {
-		  "viewName": "Detail"
+		"login": {
+		  "viewName": "login"
 		}
 	  }
 	}
