@@ -7,7 +7,6 @@ sap.ui.define([
 
     return Controller.extend("sap.ui.demo.wt.controller.Login", {
         onInit: function() {
-            console.log("oi")
             jQuery.ajax({
                 url : "/api/user",
                 contentType : "application/json",
@@ -24,14 +23,15 @@ sap.ui.define([
         
         _onObjectMatched: function() {
             if (this._dialog) {
-                setTimeout(this._dialog.open.bind(this), 1000);
+                this._nameInput.setValue("");
+                setTimeout(this._dialog.open.bind(this._dialog), 1);
             }
-            console.log("om")
         },
 
         createDialog: function () {
             this._dialogCreated = true;
             this._nameInput = new sap.m.Input({
+                required: true,
                 submit: this.onLogin.bind(this)
             });
             this._dialog = new Dialog({
@@ -55,17 +55,22 @@ sap.ui.define([
 
         onLogin: function(e) {
             var name = this._nameInput.getValue();
-            jQuery.ajax({
-                url : "/api/users",
-                method: "POST",
-                contentType : "application/json",
-                data: JSON.stringify({
-                    name: name
-                }),
-                success: () => {
-                    sap.ui.core.UIComponent.getRouterFor(this).navTo("vote");
-                }
-            });
+            if (name) {
+                this._nameInput.setValueState(sap.ui.core.ValueState.None)
+                jQuery.ajax({
+                    url : "/api/users",
+                    method: "POST",
+                    contentType : "application/json",
+                    data: JSON.stringify({
+                        name: name
+                    }),
+                    success: () => {
+                        sap.ui.core.UIComponent.getRouterFor(this).navTo("vote");
+                    }
+                });
+            } else {
+                this._nameInput.setValueState(sap.ui.core.ValueState.Error)
+            }
         }
     });
 });

@@ -3,6 +3,7 @@
 	xmlns="sap.m"
 	xmlns:mvc="sap.ui.core.mvc"
 	xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form"
 	xmlns:wt="sap.ui.demo.wt.control">
 	<Page
 		title="{i18n>title}">
@@ -17,16 +18,50 @@
                 </menu>
             </MenuButton>
 	    </headerContent>
-		<l:Grid defaultSpan="XL1 L1 M1 S1" content="{/}">
-		    <Panel backgroundDesign="Solid">
-		        <Text text="{name}" />
-		        <Text text="{date}" />
-		        <Text text="{score}%" />
-                <Slider value="{myScore}" liveChange="vote"/>
-<!--                <layoutData>
-                    <l:GridData span="XL2 L2 M2 S2" />
-                </layoutData>-->
-		    </Panel>
+		<l:Grid content="{/}" class="sapUiSmallMarginTop">
+            <VBox>
+                <VBox width="100%" height="20rem" justifyContent="SpaceBetween" backgroundDesign="Solid"  visible="{= !!${date}}">
+                    <HBox alignItems="Center" class="sapUiSmallMargin">
+                        <Title text="{name}" >
+                            <layoutData>
+                                <FlexItemData growFactor="2" />
+                            </layoutData>
+                        </Title>
+                        <VBox alignItems="Center">
+                            <Title text="{i18n>probability}" />                    
+                            <Title titleStyle="H1" text="{score}%" />                    
+                        </VBox>
+                    </HBox>
+                    <HBox justifyContent="Center">
+                        <Title titleStyle="H1" text="{
+                            path: 'date',
+                            type: 'sap.ui.model.type.Date',
+                            formatOptions: {
+                                source: {
+                                    pattern: 'yyyy-MM-ddTHH:mm:ss.SSSZ'
+                                },
+                                pattern: 'dd/MM/yy hh:mm'
+                            }
+                        }" />	            
+                    </HBox>
+                    <VBox class="sapUiSmallMargin">
+                        <Text text="{i18n>yourAvailability}"/>
+                        <Slider value="{myScore}" liveChange="vote"/>
+                    </VBox>
+                </VBox>
+                <VBox width="calc(100% - 2rem)" height="20rem" justifyContent="Center" backgroundDesign="Transparent"  visible="{= !${date}}" class="sapUiSmallMargin">
+                    <Label text="Name"/>
+                    <Input value="{newTerm>/name}" />
+                    <Label text="Time"/>
+                    <DateTimePicker placeholder=" " value="{newTerm>/date}" displayFormat="dd/MM/yy hh:mm" valueFormat="yyyy-MM-ddTHH:mm:ss.SSSZ"/>
+                    <VBox alignItems="Center">
+                        <Button type="Emphasized" text="Add" press="onAddTerm"/>
+                    </VBox>
+                </VBox>
+                <layoutData>
+                    <l:GridData span="{= ${score} > 50? 'XL3 L3 M3 S3' : 'XL2 L2 M2 S2'}" />
+                </layoutData>
+            </VBox>
 		</l:Grid>
 	</Page>
 </mvc:View>
