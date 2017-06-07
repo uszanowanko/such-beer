@@ -22,8 +22,8 @@ router.get('/user', function (req, res, next) {
     var user = User.findById(req.cookies.user)
     .select('name')
     .exec(function (err, user) {
-        if (err) {
-            return next(err)
+        if (err || !user) {
+            return res.status(401).end();
         }
         res.json(user)
     })

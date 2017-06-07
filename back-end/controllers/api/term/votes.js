@@ -5,16 +5,13 @@ var User = require('../../../models/user')
 
 
 router.post('/votes', function (req, res, next) {
-    if (!req.cookies || !req.cookies.user) {
-        return res.status(401).end();
-    }
     Term.findById(req.params.termId)
         .populate('votes')
         .exec(function (err, term) {
         if (err) {
             return next(err)
         }
-        var vote = term.votes.find((vote) => vote.user.toString() === req.cookies.user);
+        var vote = term.votes.find((vote) => vote.user.toString() === req.user._id.toString());
         if (vote) {
             vote.score = req.body.score;
             vote.save(function (err) {
@@ -36,7 +33,7 @@ router.post('/votes', function (req, res, next) {
         else {
             var vote = new Vote({
                 score: req.body.score,
-                user: req.cookies.user
+                user: req.user._id
             })
             vote.save(function (err) {
                 if (err) {
