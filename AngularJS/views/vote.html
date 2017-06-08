@@ -45,7 +45,7 @@
                         <div layout="row" layout-align="center center">
                             <span flex class="md-headline">{{term.name}}</span>        
                             <div layout="column" layout-align="center center">
-                                <span class="md-subhead">Probability:</span>
+                                <span class="md-subhead">{{'probability' | translate}}</span>
                                 <span class="md-display-1">{{term.score}}%</span>                    
                             </div>            
                         </div>
@@ -54,7 +54,7 @@
                         </div>
                         <md-divider></md-divider>
                         <div flex layout="column" layout-align="end">
-                            <span class="md-subhead">Your availability:</span>
+                            <span class="md-subhead">{{'yourAvailability' | translate}}</span>
                             <md-slider min="0" max="100" ng-model="term.myScore" ng-change="ctrl.vote(term,index,term.myScore)"></md-slider>
                         </div>
             </md-card>
@@ -68,13 +68,13 @@
         <md-card flex style="height:95%; background-color:#555" layout-padding layout="row" layout-align="center center">
                 <form flex ng-submit="ctrl.addTerm(term)" name="ctrl.addForm">
                     <md-input-container class="md-block" flex>
-                        <label>Name</label>
+                        <label>{{'name' | translate}}</label>
                         <input required ng-model="term.name">
                     </md-input-container>
                     <md-input-container class="md-block" flex>
                         <input mdc-datetime-picker date="true" time="true" type="text"
                            show-todays-date
-                           placeholder="Time"
+                           placeholder="{{'time' | translate}}"
                            min-date="today"
                            format="DD/M/YY hh:mm"
                            ng-model="term.date"
@@ -82,7 +82,7 @@
                     </md-input-container>
                     <md-divider></md-divider>
                     <div layout="row" layout-align="center">
-                        <md-button type="submit" class="md-primary md-raised">Add</md-button>
+                        <md-button type="submit" class="md-primary md-raised">{{'add' | translate}}</md-button>
                     </div>
                 </form>
             </md-card>

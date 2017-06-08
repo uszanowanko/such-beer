@@ -12,7 +12,7 @@
                 <menu>
                     <Menu itemSelected="onLogout">
                         <items>
-                            <MenuItem text="Logout"/>
+                            <MenuItem text="{i18n>logout}"/>
                         </items>
                     </Menu>
                 </menu>
@@ -50,12 +50,12 @@
                     </VBox>
                 </VBox>
                 <VBox width="calc(100% - 2rem)" height="20rem" justifyContent="Center" backgroundDesign="Transparent"  visible="{= !${date}}" class="sapUiSmallMarginBeginEnd">
-                    <Label text="Name" required="true"/>
+                    <Label text="{i18n>name}" required="true"/>
                     <Input value="{newTerm>/name}"/>
-                    <Label text="Time" required="true"/>
+                    <Label text="{i18n>time}" required="true"/>
                     <DateTimePicker placeholder=" " value="{newTerm>/date}" displayFormat="d/M/yy HH:mm" valueFormat="yyyy-MM-ddTHH:mm:ss.SSSZ"/>
                     <VBox alignItems="Center">
-                        <Button type="Emphasized" text="Add" press="onAddTerm"/>
+                        <Button type="Emphasized" text="{i18n>add}" press="onAddTerm"/>
                     </VBox>
                 </VBox>
                 <layoutData>

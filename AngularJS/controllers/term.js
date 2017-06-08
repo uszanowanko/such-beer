@@ -1,4 +1,4 @@
-function TermCtrl($scope, TermSvc) {
+function TermCtrl(TermSvc) {
     var _defer = [];
     
     TermSvc.getTerms().then((terms) => {

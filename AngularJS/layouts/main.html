@@ -14,7 +14,7 @@
 
 <body ng-app="SuchBeer" ng-controller="ApplicationCtrl as app" layout="column" ng-cloak>
     <md-toolbar class="md-toolbar-tools" layout="row" layout-align="space-between center">
-        <h2>Such Beer</h2>
+        <h2>{{'title' | translate}}</h2>
         <md-menu>
             <md-button ng-click="$mdMenu.open()" ng-show="!!app.user">
                 <md-icon alt="user">person</md-icon>
@@ -24,7 +24,7 @@
                 <md-menu-item>
                     <md-button ng-click="app.logout()">
                         <md-icon alt="logout">power_settings_new</md-icon>
-                        Logout
+                        {{'logout' | translate}}
                     </md-button>
                 </md-menu-item>
             </md-menu-content>
@@ -39,6 +39,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.1.3/angular-material.min.js"></script>
     <script src="https://unpkg.com/ng-material-datetimepicker@1.6.3/dist/angular-material-datetimepicker.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment-with-locales.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-translate/2.11.0/angular-translate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-translate/2.11.0/angular-translate-loader-static-files/angular-translate-loader-static-files.min.js"></script>
     <script src="app.js"></script>
 </body>
 

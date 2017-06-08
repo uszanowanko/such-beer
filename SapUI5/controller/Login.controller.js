@@ -35,15 +35,15 @@ sap.ui.define([
                 submit: this.onLogin.bind(this)
             });
             this._dialog = new Dialog({
-                title: "Sign-in",
+                title: "{i18n>signIn}",
                 endButton: new sap.m.Button({
-                    text: "Login",
+                    text: "{i18n>ok}",
                     press: this.onLogin.bind(this)
                 }),
                 content: [
                     new Form({
                         content: [
-                            new sap.m.Label({text: "Name"}),
+                            new sap.m.Label({text: "{i18n>name}"}),
                             this._nameInput
                         ]
                     })

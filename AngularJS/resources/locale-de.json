@@ -1,0 +1,12 @@
+{
+    "title" : "Such Beer",
+    "probability" : "Wahrscheinlichkeit:",
+    "yourAvailability" : "Deine Verfügbarkeit:",
+    "name" : "Name",
+    "time" : "Zeit",
+    "add" : "Hinzufügen",
+    "logout" : "Abmelden",
+    "signIn" : "Login",
+    "ok" : "Bestätigen"
+
+}
