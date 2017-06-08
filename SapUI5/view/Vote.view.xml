@@ -19,10 +19,10 @@
             </MenuButton>
 	    </headerContent>
 		<l:Grid content="{/}" class="sapUiSmallMarginTop">
-            <VBox>
+            <VBox class="suchBeerTile">
                 <VBox width="100%" height="20rem" justifyContent="SpaceBetween" backgroundDesign="Solid"  visible="{= !!${date}}">
                     <HBox alignItems="Center" class="sapUiSmallMargin">
-                        <Title text="{name}" >
+                        <Title titleStyle="H1" text="{name}" >
                             <layoutData>
                                 <FlexItemData growFactor="2" />
                             </layoutData>
@@ -40,7 +40,7 @@
                                 source: {
                                     pattern: 'yyyy-MM-ddTHH:mm:ss.SSSZ'
                                 },
-                                pattern: 'dd/MM/yy hh:mm'
+                                pattern: 'd/M/yy HH:mm'
                             }
                         }" />	            
                     </HBox>
@@ -49,17 +49,17 @@
                         <Slider value="{myScore}" liveChange="vote"/>
                     </VBox>
                 </VBox>
-                <VBox width="calc(100% - 2rem)" height="20rem" justifyContent="Center" backgroundDesign="Transparent"  visible="{= !${date}}" class="sapUiSmallMargin">
-                    <Label text="Name"/>
-                    <Input value="{newTerm>/name}" />
-                    <Label text="Time"/>
-                    <DateTimePicker placeholder=" " value="{newTerm>/date}" displayFormat="dd/MM/yy hh:mm" valueFormat="yyyy-MM-ddTHH:mm:ss.SSSZ"/>
+                <VBox width="calc(100% - 2rem)" height="20rem" justifyContent="Center" backgroundDesign="Transparent"  visible="{= !${date}}" class="sapUiSmallMarginBeginEnd">
+                    <Label text="Name" required="true"/>
+                    <Input value="{newTerm>/name}"/>
+                    <Label text="Time" required="true"/>
+                    <DateTimePicker placeholder=" " value="{newTerm>/date}" displayFormat="d/M/yy HH:mm" valueFormat="yyyy-MM-ddTHH:mm:ss.SSSZ"/>
                     <VBox alignItems="Center">
                         <Button type="Emphasized" text="Add" press="onAddTerm"/>
                     </VBox>
                 </VBox>
                 <layoutData>
-                    <l:GridData span="{= ${score} > 50? 'XL3 L3 M3 S3' : 'XL2 L2 M2 S2'}" />
+                    <l:GridData span="{= ${score} > 50? ${score} > 75? 'XL4 L4 M4 S4' : 'XL3 L3 M3 S3' : 'XL2 L2 M2 S2'}" />
                 </layoutData>
             </VBox>
 		</l:Grid>

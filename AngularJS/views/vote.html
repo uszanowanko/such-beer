@@ -37,7 +37,7 @@
 
     <md-grid-tile ng-repeat="(index,term) in ctrl.terms"
                   md-rowspan="2"
-                  md-colspan="{{term.score > 50? '3' : '2'}}"
+                  md-colspan="{{term.score > 50? term.score > 74? '4' : '3' : '2'}}"
                   md-colspan-sm="1"
                   md-colspan-xs="1">
 
@@ -66,7 +66,7 @@
                   md-colspan-xs="1">
 
         <md-card flex style="height:95%; background-color:#555" layout-padding layout="row" layout-align="center center">
-                <form flex ng-submit="ctrl.addTerm(term)">
+                <form flex ng-submit="ctrl.addTerm(term)" name="ctrl.addForm">
                     <md-input-container class="md-block" flex>
                         <label>Name</label>
                         <input required ng-model="term.name">

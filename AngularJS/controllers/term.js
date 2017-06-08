@@ -21,6 +21,8 @@ function TermCtrl($scope, TermSvc) {
             this.terms.push(response)
             term.name = null;
             term.date = null;
+            this.addForm.$setPristine()
+            this.addForm.$setUntouched()
         })
     }
     
