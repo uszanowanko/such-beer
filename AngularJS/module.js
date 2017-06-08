@@ -6,7 +6,7 @@ angular.module('SuchBeer', ['ngMaterial', 'ngRoute', 'ngMaterialDatePicker','pas
             .warnPalette("pink")
             .dark();
         $translateProvider.useStaticFilesLoader({
-            prefix: 'resources/locale-',
+            prefix: 'resources/translations/locale-',
             suffix: '.json'
         })
             .registerAvailableLanguageKeys(['en','pl','de'], {
