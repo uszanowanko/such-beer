@@ -1,8 +1,8 @@
 <mvc:View
-	controllerName="sap.ui.demo.wt.controller.Login"
+	controllerName="such.beer.controller.Login"
 	xmlns="sap.m"
 	xmlns:mvc="sap.ui.core.mvc"
-	xmlns:wt="sap.ui.demo.wt.control">
+	xmlns:wt="such.beer.control">
 	<Page>
 	</Page>
 </mvc:View>

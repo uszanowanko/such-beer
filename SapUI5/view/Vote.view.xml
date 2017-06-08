@@ -1,10 +1,10 @@
 <mvc:View
-	controllerName="sap.ui.demo.wt.controller.Vote"
+	controllerName="such.beer.controller.Vote"
 	xmlns="sap.m"
 	xmlns:mvc="sap.ui.core.mvc"
 	xmlns:l="sap.ui.layout"
 	xmlns:f="sap.ui.layout.form"
-	xmlns:wt="sap.ui.demo.wt.control">
+	xmlns:wt="such.beer.control">
 	<Page
 		title="{i18n>title}">
         <headerContent>

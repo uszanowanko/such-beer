@@ -5,7 +5,7 @@ sap.ui.define([
 ], function (Controller, Dialog, Form) {
     "use strict";
 
-    return Controller.extend("sap.ui.demo.wt.controller.Login", {
+    return Controller.extend("such.beer.controller.Login", {
         onInit: function() {
             jQuery.ajax({
                 url : "/api/user",

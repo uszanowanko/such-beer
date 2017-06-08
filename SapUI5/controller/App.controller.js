@@ -3,7 +3,7 @@ sap.ui.define([
 ], function (Controller) {
 	"use strict";
 
-	return Controller.extend("sap.ui.demo.wt.controller.App", {
+	return Controller.extend("such.beer.controller.App", {
         onInit: function() {
             sap.ui.getCore().setModel(new sap.ui.model.json.JSONModel());
         }
