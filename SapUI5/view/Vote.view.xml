@@ -59,7 +59,7 @@
                     </VBox>
                 </VBox>
                 <layoutData>
-                    <l:GridData span="{= ${score} > 50? ${score} > 75? 'XL4 L4 M4 S4' : 'XL3 L3 M3 S3' : 'XL2 L2 M2 S2'}" />
+                    <l:GridData span="{= ${score} > 50? ${score} > 75? 'XL4 L4 M6 S12' : 'XL3 L4 M4 S6' : 'XL2 L3 M4 S6'}" />
                 </layoutData>
             </VBox>
 		</l:Grid>
