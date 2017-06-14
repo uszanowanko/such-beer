@@ -1,0 +1,23 @@
+<div flex layout="row" layout-align="center center" ng-controller="LoginCtrl as ctrl">
+    <md-card flex-gt-md="33">
+        <md-card-title>
+            <md-card-title-text>
+                <span class="md-headline">{{'signIn' | translate}}</span>
+            </md-card-title-text>
+        </md-card-title>
+        <md-card-content>
+            <form name="loginForm" ng-submit="ctrl.login(username); ctrl.flags.loginBusy=true" layout="column" layout-align="stretch center">
+                <md-input-container>
+                    <label>{{'name' | translate}}</label>
+                    <input ng-model="username" name="username" ng-disabled="ctrl.flags.loginBusy" required autofocus>
+                </md-input-container>
+                <div layout="row" layout-align="center center" ng-show="ctrl.flags.loginBusy">
+                    <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+                </div>
+                <div layout="row" layout-align="end">
+                    <md-button type="submit" class="md-primary md-raised" ng-disabled="ctrl.flags.loginBusy">{{'ok' | translate}}</md-button>
+                </div>
+            </form>
+        </md-card-content>
+    </md-card>
+</div>

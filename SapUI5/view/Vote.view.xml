@@ -1,0 +1,67 @@
+<mvc:View
+	controllerName="such.beer.controller.Vote"
+	xmlns="sap.m"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form"
+	xmlns:wt="such.beer.control">
+	<Page
+		title="{i18n>title}">
+        <headerContent>
+            <MenuButton text="{user>/name}">
+                <menu>
+                    <Menu itemSelected="onLogout">
+                        <items>
+                            <MenuItem text="{i18n>logout}"/>
+                        </items>
+                    </Menu>
+                </menu>
+            </MenuButton>
+	    </headerContent>
+		<l:Grid content="{/}" class="sapUiSmallMarginTop">
+            <VBox class="suchBeerTile">
+                <VBox width="100%" height="20rem" justifyContent="SpaceBetween" backgroundDesign="Solid"  visible="{= !!${date}}">
+                    <HBox alignItems="Center" class="sapUiSmallMargin">
+                        <Title titleStyle="H1" text="{name}" >
+                            <layoutData>
+                                <FlexItemData growFactor="2" />
+                            </layoutData>
+                        </Title>
+                        <VBox alignItems="Center">
+                            <Title text="{i18n>probability}" />                    
+                            <Title titleStyle="H1" text="{score}%" />                    
+                        </VBox>
+                    </HBox>
+                    <HBox justifyContent="Center">
+                        <Title titleStyle="H1" text="{
+                            path: 'date',
+                            type: 'sap.ui.model.type.Date',
+                            formatOptions: {
+                                source: {
+                                    pattern: 'yyyy-MM-ddTHH:mm:ss.SSSZ'
+                                },
+                                pattern: 'd/M/yy HH:mm'
+                            }
+                        }" />	            
+                    </HBox>
+                    <VBox class="sapUiSmallMargin">
+                        <Text text="{i18n>yourAvailability}"/>
+                        <Slider value="{myScore}" liveChange="vote"/>
+                    </VBox>
+                </VBox>
+                <VBox width="calc(100% - 2rem)" height="20rem" justifyContent="Center" backgroundDesign="Transparent"  visible="{= !${date}}" class="sapUiSmallMarginBeginEnd">
+                    <Label text="{i18n>name}" required="true"/>
+                    <Input value="{newTerm>/name}"/>
+                    <Label text="{i18n>time}" required="true"/>
+                    <DateTimePicker placeholder=" " value="{newTerm>/date}" displayFormat="d/M/yy HH:mm" valueFormat="yyyy-MM-ddTHH:mm:ss.SSSZ"/>
+                    <VBox alignItems="Center">
+                        <Button type="Emphasized" text="{i18n>add}" press="onAddTerm"/>
+                    </VBox>
+                </VBox>
+                <layoutData>
+                    <l:GridData span="{= ${score} > 50? ${score} > 75? 'XL4 L4 M6 S12' : 'XL3 L4 M4 S6' : 'XL2 L3 M4 S6'}" />
+                </layoutData>
+            </VBox>
+		</l:Grid>
+	</Page>
+</mvc:View>

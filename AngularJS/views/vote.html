@@ -1,0 +1,91 @@
+<!--
+<div flex layout="row" layout-align="center center" ng-controller="TermCtrl as ctrl">
+    <md-card flex-gt-md="33">
+        <md-card-title>
+            <md-card-title-text>
+                <span class="md-headline">Upcoming events</span>
+            </md-card-title-text>
+        </md-card-title>
+        <md-card-content>
+            <md-card ng-repeat="term in ctrl.terms">
+                <md-card-title>
+                    <md-card-title-text>
+                        <div layout="row" layout-align="center center" class="md-hue-3">
+                            <span flex class="md-headline">{{term.date | date : "d/M/yy H:mm"}}</span>        
+                            <div layout="column" layout-align="center center">
+                                <span class="md-subhead">Probability:</span>
+                                <span class="md-display-2">10%</span>                    
+                            </div>            
+                        </div>
+                        <md-divider></md-divider>
+                        <span class="md-subhead">Your availability:</span>
+                        <md-slider flex min="0" max="100" ng-model="score" ng-change="ctrl.vote(term,score)"></md-slider>
+                    </md-card-title-text>
+                </md-card-title>
+            </md-card>
+        </md-card-content>
+    </md-card>
+</div>
+-->
+
+
+<md-content flex ng-controller="TermCtrl as ctrl">
+    <md-grid-list
+        md-cols="2" md-cols-sm="4" md-cols-md="6" md-cols-gt-md="12"
+        md-row-height-gt-md="1:1" md-row-height="4:3"
+        md-gutter="8px" md-gutter-gt-sm="4px" >
+
+    <md-grid-tile ng-repeat="(index,term) in ctrl.terms"
+                  md-rowspan="2"
+                  md-colspan="{{term.score > 50? term.score > 74? '4' : '3' : '2'}}"
+                  md-colspan-sm="1"
+                  md-colspan-xs="1">
+
+        <md-card flex style="height:95%" layout-padding >
+                        <div layout="row" layout-align="center center">
+                            <span flex class="md-headline">{{term.name}}</span>        
+                            <div layout="column" layout-align="center center">
+                                <span class="md-subhead">{{'probability' | translate}}</span>
+                                <span class="md-display-1">{{term.score}}%</span>                    
+                            </div>            
+                        </div>
+                        <div layout="column" layout-align="center center">
+                            <span flex class="md-headline">{{term.date | date : "d/M/yy H:mm"}}</span>                   
+                        </div>
+                        <md-divider></md-divider>
+                        <div flex layout="column" layout-align="end">
+                            <span class="md-subhead">{{'yourAvailability' | translate}}</span>
+                            <md-slider min="0" max="100" ng-model="term.myScore" ng-change="ctrl.vote(term,index,term.myScore)"></md-slider>
+                        </div>
+            </md-card>
+    </md-grid-tile>
+    <md-grid-tile
+                  md-rowspan="2"
+                  md-colspan=2
+                  md-colspan-sm="1"
+                  md-colspan-xs="1">
+
+        <md-card flex style="height:95%; background-color:#555" layout-padding layout="row" layout-align="center center">
+                <form flex ng-submit="ctrl.addTerm(term)" name="ctrl.addForm">
+                    <md-input-container class="md-block" flex>
+                        <label>{{'name' | translate}}</label>
+                        <input required ng-model="term.name">
+                    </md-input-container>
+                    <md-input-container class="md-block" flex>
+                        <input mdc-datetime-picker date="true" time="true" type="text"
+                           show-todays-date
+                           placeholder="{{'time' | translate}}"
+                           min-date="today"
+                           format="DD/M/YY hh:mm"
+                           ng-model="term.date"
+                           required>
+                    </md-input-container>
+                    <md-divider></md-divider>
+                    <div layout="row" layout-align="center">
+                        <md-button type="submit" class="md-primary md-raised">{{'add' | translate}}</md-button>
+                    </div>
+                </form>
+            </md-card>
+    </md-grid-tile>
+  </md-grid-list>
+</md-content>

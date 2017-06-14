@@ -1,0 +1,24 @@
+{
+  "name": "suchsong",
+  "scripts": {
+    "start": "node ./node_modules/gulp/bin/gulp.js js --gulpfile AngularJS/gulpfile.js --cwd AngularJS && node ./back-end/server.js",
+    "dev": "concurrently \"node --debug ./back-end/server.js\" \"node ./node_modules/gulp/bin/gulp.js watch --gulpfile AngularJS/gulpfile.js --cwd AngularJS\" "
+  },
+  "dependencies": {
+    "babel-preset-es2015": "^6.24.1",
+    "body-parser": "^1.17.2",
+    "concurrently": "^3.4.0",
+    "cookie-parser": "^1.4.3",
+    "express": "^4.15.3",
+    "gulp": "^3.9.1",
+    "gulp-babel": "^6.1.2",
+    "gulp-concat": "^2.6.1",
+    "gulp-ng-annotate": "^2.0.0",
+    "gulp-plumber": "^1.1.0",
+    "mongoose": "3.6.x",
+    "morgan": "^1.8.2",
+    "tingodb": "^0.5.1",
+    "tungus": "0.0.5"
+  },
+  "devDependencies": {}
+}

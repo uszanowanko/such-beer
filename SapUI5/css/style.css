@@ -1,0 +1,8 @@
+.suchBeerTile {
+    border: 1px solid rgba(0,0,0,0.15);
+    border-radius: .125rem;
+}
+
+.sapMFlexItem .sapMTitle{
+    white-space: pre-wrap;
+}
